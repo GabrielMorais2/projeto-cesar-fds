@@ -1,0 +1,29 @@
+api:
+  security:
+    token:
+      secret: my-secret-key
+
+spring:
+  datasource:
+    url: jdbc:postgresql://${POSTGRES_HOST:localhost}:${DB_PORT:5434}/${POSTGRES_DB:db_backend}
+    username: ${POSTGRES_USER:root}
+    password: ${POSTGRES_PASSWORD:root}
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    show_sql: true
+    defer-datasource-initialization: true
+
+openapi:
+  service:
+    title: API Class FaCT
+    version: 1.0.0
+    url: http://localhost:8080
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

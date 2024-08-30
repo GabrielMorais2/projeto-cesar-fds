@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  postgres-backend:
+    image: postgres:16-alpine
+    container_name: postgres-backend
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: db_backend
+    ports:
+      - "5434:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    restart: always
+    networks:
+      - spring-postgres
+    healthcheck:
+      test: [ "CMD-SHELL", "pg_isready", "-d", "db_prod" ]
+      interval: 30s
+      timeout: 60s
+      retries: 5
+      start_period: 80s
+
+volumes:
+  postgres-data: {}
+
+networks:
+  spring-postgres:
+    driver: bridge
