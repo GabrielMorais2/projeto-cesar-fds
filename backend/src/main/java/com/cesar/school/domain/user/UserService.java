@@ -34,7 +34,7 @@ public class UserService {
     public TokenResponseDTO login(LoginRequestDTO loginRequestDTO) {
         User user = repository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(() -> new UserNotFoundException("Email or password incorrect"));
         if(passwordEncoder.matches(loginRequestDTO.getPassword(), user.getPassword())) {
-            return new TokenResponseDTO(this.tokenService.generateToken(user));
+            return new TokenResponseDTO(this.tokenService.generateToken(user), user.getName());
         }
         throw new BadCredentialsException("Email or password incorrect");
     }

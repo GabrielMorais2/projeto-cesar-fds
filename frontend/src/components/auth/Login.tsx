@@ -35,6 +35,7 @@ export default function Login() {
       const response = await http.post('/v1/login', data);
       setToken(response.data.token);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('name', response.data.name);
       toast({
         title: "Login realizado com sucesso!",
         description: "Bem vindo de volta!",
