@@ -28,7 +28,7 @@ public class UserService {
         registerRequestDTO.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
         User newUser = userRepository.save(mapper.map(registerRequestDTO, User.class));
         String token = this.tokenService.generateToken(newUser);
-        return new RegisterResponseDTO(newUser.getEmail(), newUser.getName(), token);
+        return new RegisterResponseDTO(newUser.getEmail(), newUser.getName());
     }
 
     public TokenResponseDTO login(LoginRequestDTO loginRequestDTO) {

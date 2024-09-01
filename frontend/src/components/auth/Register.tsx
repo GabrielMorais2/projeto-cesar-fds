@@ -9,8 +9,8 @@ import { Button } from '@/components/ui/button';
 import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import http from '@/api';
-import { useToast } from './ui/use-toast';
-import { ToastAction } from './ui/toast';
+import { useToast } from '../ui/use-toast';
+import { ToastAction } from '../ui/toast';
 
 const schema = yup.object({
   name: yup.string().required('Name is required'),

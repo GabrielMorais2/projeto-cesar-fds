@@ -25,6 +25,10 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
     navigate("/reports-groups");
   };
 
+  const openDisciplines = () => {
+    navigate("/disciplinas-grupos");
+  };
+  
   const openDashboard = () => {
     navigate("/dashboard");
   };
@@ -45,9 +49,9 @@ const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
               <Home className="h-5 w-5" />
               {isSidebarOpen && <span>Home</span>}
             </Button>
-            <Button variant="ghost" size="sm" className="flex items-center space-x-2">
+            <Button variant="ghost" size="sm" className="flex items-center space-x-2" onClick={openDisciplines}>
               <Users className="h-5 w-5" />
-              {isSidebarOpen && <span>Grupos</span>}
+              {isSidebarOpen && <span>Grupos e Disciplinas</span>}
             </Button>
             <Button variant="ghost" size="sm" className="flex items-center space-x-2" onClick={openReportsGroups}>
               <FileText className="h-5 w-5" />
