@@ -11,5 +11,4 @@ public class RegisterResponseDTO {
 
     private String name;
     private String email;
-    private String token;
 }

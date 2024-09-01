@@ -1,9 +1,10 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
-import Login from "../components/Login";
 import Dashboard from "../components/Dashboard";
-import Register from "@/components/Register";
 import ReportsGruops from "@/components/ReportGroups";
+import DisciplineGroupManagement from "@/components/DisciplineGroupManagement";
+import Login from "@/components/Auth/Login";
+import Register from "@/components/Auth/Register";
 
 const Routes = () => {
   const routesForPublic = [
@@ -37,6 +38,10 @@ const Routes = () => {
         {
           path: "/dashboard",
           element: <Dashboard />,
+        },
+        {
+          path: "/disciplinas-grupos",
+          element: <DisciplineGroupManagement />,
         },
       ],
     },

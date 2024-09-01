@@ -10,8 +10,8 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import http from '@/api';
 import { useAuth } from '@/provider/authProvider';
-import { useToast } from './ui/use-toast';
-import { ToastAction } from './ui/toast';
+import { useToast } from '../ui/use-toast';
+import { ToastAction } from '../ui/toast';
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
