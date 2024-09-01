@@ -19,7 +19,7 @@ export default function Dashboard() {
   ]);
   const [newReminder, setNewReminder] = useState("");
   const [showDialog, setShowDialog] = useState(false);
-
+  const [name, setName] = useState<string | null>(localStorage.getItem("name"));
   const openReportsGroups = () => {
     navigate("/reports-groups");
   };
@@ -41,7 +41,7 @@ export default function Dashboard() {
       <main className="flex-1 overflow-auto p-8">
         <header className="mb-8 flex justify-between items-start">
           <div className="flex flex-col">
-            <h1 className="text-3xl font-bold">Dashboard</h1>
+            <h1 className="text-3xl font-bold">Olá, {name || "usuário"}!</h1>
             <p className="text-gray-600 mt-1">Bem-vindo de volta! Aqui está um resumo das suas atividades.</p>
           </div>
           <div className="flex items-center">
