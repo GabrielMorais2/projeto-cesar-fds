@@ -68,4 +68,4 @@ Para instalar a aplicação, algumas tecnologias são requeridas como:
 
 Feito isso, irá subir o frontend e backend. A aplicação ficará disponivel em  http://localhost:5173/login
 
-![image](https://github.com/user-attachments/assets/c4bef6c1-07ac-4818-8718-68218f578fd0) 👍
+![image](https://github.com/user-attachments/assets/c4bef6c1-07ac-4818-8718-68218f578fd0)
