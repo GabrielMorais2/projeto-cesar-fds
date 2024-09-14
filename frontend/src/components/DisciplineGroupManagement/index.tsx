@@ -79,7 +79,6 @@ export default function DisciplineGroupManagement() {
   const handleCsvUpload = (event) => {
     const file = event.target.files[0]
     setCsvFile(file)
-    console.log('CSV file uploaded:', file.name)
   }
 
   const handleDisciplineFilter = (value) => {
