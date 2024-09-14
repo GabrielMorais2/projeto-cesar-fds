@@ -63,9 +63,6 @@ const GroupList: React.FC<GroupListProps> = ({
   handleDisciplineFilter,
   handleDeleteGroup
 }) => {
-  console.log('Selected Discipline:', selectedDiscipline);
-  console.log('Filtered Groups:', filteredGroups);
-
   return (
     <Card>
       <CardHeader>
@@ -76,7 +73,6 @@ const GroupList: React.FC<GroupListProps> = ({
           <div className="flex items-center space-x-2">
             <h2 className="text-lg font-semibold">Lista de Grupos</h2>
             <Select value={selectedDiscipline} onValueChange={(value) => {
-              console.log('Filter Changed:', value);
               handleDisciplineFilter(value);
             }}>
               <SelectTrigger className="w-[200px]">

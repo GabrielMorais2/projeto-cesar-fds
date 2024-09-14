@@ -40,8 +40,8 @@ public class ExceptionHandlerController {
         return new ResponseEntity<>(message, HttpStatus.UNAUTHORIZED);
     }
 
-    @ExceptionHandler(UserNotFoundException.class)
-    public ResponseEntity<ErrorResponse> userNotFoundException(UserNotFoundException ex) {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErrorResponse> userNotFoundException(EntityNotFoundException ex) {
         ErrorResponse message = new ErrorResponse(
                 HttpStatus.UNAUTHORIZED.value(),
                 timestamp,
