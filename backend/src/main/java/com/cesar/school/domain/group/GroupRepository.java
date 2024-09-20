@@ -12,4 +12,7 @@ import java.util.Optional;
 public interface GroupRepository extends JpaRepository<Group, Long> {
 
     List<Group> findAllByUserId(String userId);
+
+
+    Optional<Group> findByIdAndUserId(Long id, String userId);
 }
