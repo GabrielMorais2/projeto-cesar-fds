@@ -74,6 +74,7 @@ public class EvaluationService {
             response.setDiscipline(new DisciplineDTO(
                     evaluation.getDiscipline().getId(),
                     evaluation.getDiscipline().getName(),
+                    evaluation.getDiscipline().getCourse(),
                     evaluation.getDiscipline().getSemester()
             ));
 

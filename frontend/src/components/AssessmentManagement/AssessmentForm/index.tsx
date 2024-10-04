@@ -1,4 +1,4 @@
-import React, { useState, useCallback } from "react";
+import React, { useState, useCallback, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -69,6 +69,7 @@ export default function AssessmentForm({
   resetFormState,
 }: AssessmentFormProps) {
   const [isCalendarOpen, setIsCalendarOpen] = useState(false);
+  const [filteredGroups, setFilteredGroups] = useState<Group[]>([]); // Estado para grupos filtrados
 
   const formattedDate = newAssessment.deadline
     ? format(newAssessment.deadline, "PPP", { locale: ptBR })
@@ -81,13 +82,25 @@ export default function AssessmentForm({
 
   const handleSelectChange = useCallback((name: string) => (value: string) => {
     setNewAssessment((prev) => ({ ...prev, [name]: value }));
-  }, [setNewAssessment]);
+
+    // Se a disciplina for selecionada, filtrar os grupos
+    if (name === "disciplineId") {
+      const selectedDisciplineId = value;
+      const groupsForDiscipline = groups.filter(group => group.id === selectedDisciplineId);
+      setFilteredGroups(groupsForDiscipline); // Atualiza grupos filtrados
+      setNewAssessment((prev) => ({ ...prev, groupId: "" })); // Reseta o grupo selecionado
+    }
+  }, [setNewAssessment, groups]);
 
   const handleDateSelect = useCallback((date: Date | undefined) => {
     setNewAssessment((prev) => ({ ...prev, deadline: date }));
     setIsCalendarOpen(false);
   }, [setNewAssessment]);
 
+  useEffect(() => {
+
+    setFilteredGroups(groups);
+  }, [groups]);
   return (
     <Dialog
       open={isAddingAssessment}
@@ -156,7 +169,7 @@ export default function AssessmentForm({
               </SelectTrigger>
               <SelectContent>
                 <AnimatePresence>
-                  {groups.map((group) => (
+                  {filteredGroups.map((group) => (
                     <motion.div
                       key={group.id}
                       initial={{ opacity: 0, y: -10 }}

@@ -12,7 +12,6 @@ import { Plus } from "lucide-react";
 import { formatISO } from "date-fns";
 
 export default function AssessmentManagement() {
-  // State
   const [assessments, setAssessments] = useState([]);
   const [newAssessment, setNewAssessment] = useState({
     name: "",
@@ -29,30 +28,17 @@ export default function AssessmentManagement() {
   const [disciplines, setDisciplines] = useState([]);
   const [groups, setGroups] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-
   const { toast } = useToast();
 
   const fetchDisciplines = useCallback(async () => {
     try {
-      const response = await mockApi.getDisciplines();
+      const response = await http.get("/v1/disciplines");
       setDisciplines(response.data);
+      console.log(response.data)
     } catch (error) {
       toast({
         title: "Erro",
         description: "Ocorreu um erro ao buscar as disciplinas.",
-        variant: "destructive",
-      });
-    }
-  }, [toast]);
-
-  const fetchGroups = useCallback(async () => {
-    try {
-      const response = await mockApi.getGroups();
-      setGroups(response.data);
-    } catch (error) {
-      toast({
-        title: "Erro",
-        description: "Ocorreu um erro ao buscar os grupos.",
         variant: "destructive",
       });
     }
@@ -77,13 +63,11 @@ export default function AssessmentManagement() {
   useEffect(() => {
     fetchAssessments();
     fetchDisciplines();
-    fetchGroups();
-  }, [fetchAssessments, fetchDisciplines, fetchGroups]);
+  }, [fetchAssessments, fetchDisciplines]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
-
     try {
       const formattedDueDate = newAssessment.deadline
         ? formatISO(newAssessment.deadline, { representation: "date" })

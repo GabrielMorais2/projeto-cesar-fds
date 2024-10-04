@@ -10,4 +10,10 @@ import lombok.NoArgsConstructor;
 public class GroupDTO {
     private Long id;
     private String name;
+    private Long disciplineId;
+
+    public GroupDTO(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }
