@@ -10,10 +10,10 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class DisciplineDTO {
+public class DisciplineWithGroupDTO {
     private Long id;
     private String name;
     private String course;
     private String semester;
-
+    private List<GroupWithStudentsDTO> groups;
 }

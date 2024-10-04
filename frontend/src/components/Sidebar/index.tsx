@@ -4,7 +4,6 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import { Separator } from "@/components/ui/separator";
 import { Home, Users, FileText, LogOut, Menu } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useAuth } from "@/provider/authProvider";
 
 interface SidebarProps {
   isSidebarOpen: boolean;
@@ -13,10 +12,9 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ isSidebarOpen, toggleSidebar }) => {
   const navigate = useNavigate();
-  const { setToken } = useAuth();
 
   const handleLogout = () => {
-    setToken(null);
+    localStorage.setItem("token", "");
     navigate("/login");
   };
 

@@ -8,6 +8,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -25,7 +26,7 @@ public class Student {
     private String email;
 
     @ManyToMany(mappedBy = "students")
-    private Set<Group> groups;
+    private List<Group> groups;
 
     @ManyToOne
     @JoinColumn(name = "user_id")
