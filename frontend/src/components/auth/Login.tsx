@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -10,8 +10,8 @@ import { EyeIcon, EyeOffIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import http from '@/api';
 import { useAuth } from '@/provider/authProvider';
-import { useToast } from './ui/use-toast';
-import { ToastAction } from './ui/toast';
+import { useToast } from '../ui/use-toast';
+import { ToastAction } from '../ui/toast';
 
 const schema = yup.object({
   email: yup.string().email('Invalid email').required('Email is required'),
@@ -35,6 +35,7 @@ export default function Login() {
       const response = await http.post('/v1/login', data);
       setToken(response.data.token);
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('name', response.data.name);
       toast({
         title: "Login realizado com sucesso!",
         description: "Bem vindo de volta!",

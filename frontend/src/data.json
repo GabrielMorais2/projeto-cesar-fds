@@ -1,0 +1,105 @@
+[
+    {
+      "nome": "João Silva",
+      "disciplina": "Engenharia de Software",
+      "grupo": "Grupo A",
+      "assiduidade": [4.5, 4.0, 4.2],
+      "dedicacao": [4.2, 4.1, 4.3],
+      "colaboracao": [4.8, 4.6, 4.7],
+      "qualidade": [4.3, 4.5, 4.1],
+      "prazo": [4.0, 3.8, 4.2],
+      "criatividade": [4.6, 4.5, 4.7],
+      "comentarios": [
+        "João é muito dedicado e sempre entrega no prazo.",
+        "Excelente trabalho em equipe, sempre disposto a ajudar.",
+        "Poderia melhorar um pouco na criatividade das soluções."
+      ],
+      "preenchido": true
+    },
+    {
+      "nome": "Maria Oliveira",
+      "disciplina": "Engenharia de Software",
+      "grupo": "Grupo A",
+      "assiduidade": [4.7, 4.2, 4.5],
+      "dedicacao": [4.4, 4.3, 4.6],
+      "colaboracao": [4.5, 4.7, 4.6],
+      "qualidade": [4.6, 4.4, 4.7],
+      "prazo": [4.1, 4.0, 4.3],
+      "criatividade": [4.5, 4.6, 4.4],
+      "comentarios": [
+        "Maria demonstra grande capacidade de liderança.",
+        "Seu trabalho é bem organizado e pontual.",
+        "Pode melhorar a criatividade nas soluções propostas."
+      ],
+      "preenchido": true
+    },
+    {
+      "nome": "Pedro Santos",
+      "disciplina": "Banco de Dados",
+      "grupo": "Grupo B",
+      "assiduidade": [4.0, 4.1, 4.3],
+      "dedicacao": [4.1, 4.0, 4.2],
+      "colaboracao": [4.2, 4.3, 4.4],
+      "qualidade": [4.1, 4.0, 4.2],
+      "prazo": [4.0, 4.1, 4.3],
+      "criatividade": [4.0, 4.2, 4.3],
+      "comentarios": [
+        "Pedro é um membro confiável e comprometido.",
+        "Seu trabalho atende bem aos requisitos.",
+        "Pode melhorar na inovação das soluções."
+      ],
+      "preenchido": false
+    },
+    {
+      "nome": "Ana Souza",
+      "disciplina": "Banco de Dados",
+      "grupo": "Grupo B",
+      "assiduidade": [4.3, 4.2, 4.5],
+      "dedicacao": [4.6, 4.5, 4.7],
+      "colaboracao": [4.7, 4.6, 4.8],
+      "qualidade": [4.5, 4.4, 4.6],
+      "prazo": [4.2, 4.1, 4.3],
+      "criatividade": [4.6, 4.7, 4.5],
+      "comentarios": [
+        "Ana é muito proativa e tem um bom desempenho.",
+        "Seu trabalho é sempre bem detalhado.",
+        "Pode melhorar a capacidade de adaptação a mudanças."
+      ],
+      "preenchido": true
+    },
+    {
+      "nome": "Lucas Almeida",
+      "disciplina": "Inteligência Artificial",
+      "grupo": "Grupo A",
+      "assiduidade": [4.4, 4.3, 4.5],
+      "dedicacao": [4.6, 4.4, 4.5],
+      "colaboracao": [4.5, 4.7, 4.6],
+      "qualidade": [4.4, 4.5, 4.6],
+      "prazo": [4.1, 4.0, 4.2],
+      "criatividade": [4.6, 4.7, 4.5],
+      "comentarios": [
+        "Lucas é criativo e eficiente em suas tarefas.",
+        "Mostra ótimo desempenho em todas as áreas.",
+        "Pode melhorar a interação com a equipe."
+      ],
+      "preenchido": true
+    },
+    {
+      "nome": "Beatriz Costa",
+      "disciplina": "Inteligência Artificial",
+      "grupo": "Grupo B",
+      "assiduidade": [4.2, 4.0, 4.1],
+      "dedicacao": [4.3, 4.1, 4.2],
+      "colaboracao": [4.5, 4.4, 4.6],
+      "qualidade": [4.0, 4.1, 4.2],
+      "prazo": [4.0, 4.1, 4.3],
+      "criatividade": [4.2, 4.4, 4.5],
+      "comentarios": [
+        "Beatriz é muito dedicada e realiza um bom trabalho.",
+        "Mostra um bom nível de organização.",
+        "Pode desenvolver mais sua criatividade."
+      ],
+      "preenchido": false
+    }
+  ]
+  

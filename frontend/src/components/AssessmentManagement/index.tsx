@@ -45,7 +45,6 @@ export default function AssessmentManagement() {
   const [isLoading, setIsLoading] = useState(true);
   const { toast } = useToast();
 
-  // API calls
   const fetchDisciplines = useCallback(async () => {
     try {
       const response = await http.get("/v1/disciplines");

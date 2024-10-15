@@ -10,4 +10,5 @@ import lombok.NoArgsConstructor;
 public class TokenResponseDTO {
 
     String token;
+    String name;
 }

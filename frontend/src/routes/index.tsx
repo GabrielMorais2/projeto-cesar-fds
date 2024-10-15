@@ -1,19 +1,24 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ProtectedRoute } from "./ProtectedRoute";
-import Login from "../components/Login";
 import Dashboard from "../components/Dashboard";
-import Register from "@/components/Register";
-import ReportsGruops from "@/components/ReportGroups";
+import ReportsGroups from "@/components/ReportGroups";
+import DisciplineGroupManagement from "@/components/DisciplineGroupManagement";
+import Login from "@/components/auth/Login";
+import Register from "@/components/auth/Register";
+import ErrorPage from "@/components/ErrorPage";
+import AssessmentManagement from "@/components/AssessmentManagement";
 
 const Routes = () => {
   const routesForPublic = [
     {
       path: "/service",
       element: <div>Service Page</div>,
+      errorElement: <ErrorPage />, 
     },
     {
       path: "/about-us",
       element: <div>About Us</div>,
+      errorElement: <ErrorPage />, 
     },
   ];
 
@@ -21,6 +26,7 @@ const Routes = () => {
     {
       path: "/",
       element: <ProtectedRoute />,
+      errorElement: <ErrorPage />,
       children: [
         {
           path: "/",
@@ -28,7 +34,7 @@ const Routes = () => {
         },
         {
           path: "/reports-groups",
-          element: <ReportsGruops />,
+          element: <ReportsGroups />,
         },
         {
           path: "/logout",
@@ -38,6 +44,14 @@ const Routes = () => {
           path: "/dashboard",
           element: <Dashboard />,
         },
+        {
+          path: "/disciplinas-grupos",
+          element: <DisciplineGroupManagement />,
+        },
+        {
+          path: "/avaliacoes",
+          element: <AssessmentManagement />,
+        },
       ],
     },
   ];
@@ -46,24 +60,26 @@ const Routes = () => {
     {
       path: "/",
       element: <div>Home Page</div>,
+      errorElement: <ErrorPage />, 
     },
     {
       path: "/login",
       element: <Login />,
+      errorElement: <ErrorPage />,
     },
     {
       path: "/register",
       element: <Register />,
+      errorElement: <ErrorPage />, 
     },
   ];
-  // Combine and conditionally include routes based on authentication status
+
   const router = createBrowserRouter([
     ...routesForPublic,
     ...routesForNotAuthenticated,
     ...routesForAuthenticatedOnly,
   ]);
 
-  // Provide the router configuration using RouterProvider
   return <RouterProvider router={router} />;
 };
 

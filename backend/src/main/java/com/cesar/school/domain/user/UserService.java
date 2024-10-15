@@ -5,7 +5,7 @@ import com.cesar.school.domain.user.payload.RegisterRequestDTO;
 import com.cesar.school.domain.user.payload.RegisterResponseDTO;
 import com.cesar.school.domain.user.payload.TokenResponseDTO;
 import com.cesar.school.exception.EmailAlreadyExistsException;
-import com.cesar.school.exception.UserNotFoundException;
+import com.cesar.school.exception.EntityNotFoundException;
 import com.cesar.school.infra.security.TokenService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
@@ -27,14 +27,13 @@ public class UserService {
         validateEmailUniqueness(registerRequestDTO.getEmail());
         registerRequestDTO.setPassword(passwordEncoder.encode(registerRequestDTO.getPassword()));
         User newUser = userRepository.save(mapper.map(registerRequestDTO, User.class));
-        String token = this.tokenService.generateToken(newUser);
-        return new RegisterResponseDTO(newUser.getEmail(), newUser.getName(), token);
+        return new RegisterResponseDTO(newUser.getEmail(), newUser.getName());
     }
 
     public TokenResponseDTO login(LoginRequestDTO loginRequestDTO) {
-        User user = repository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(() -> new UserNotFoundException("Email or password incorrect"));
+        User user = repository.findByEmail(loginRequestDTO.getEmail()).orElseThrow(() -> new EntityNotFoundException("Email or password incorrect"));
         if(passwordEncoder.matches(loginRequestDTO.getPassword(), user.getPassword())) {
-            return new TokenResponseDTO(this.tokenService.generateToken(user));
+            return new TokenResponseDTO(this.tokenService.generateToken(user), user.getName());
         }
         throw new BadCredentialsException("Email or password incorrect");
     }

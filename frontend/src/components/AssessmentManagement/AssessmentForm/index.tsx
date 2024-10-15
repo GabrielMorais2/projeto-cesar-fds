@@ -25,7 +25,6 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
-
 export interface Discipline {
   id: number;
   name: string;
@@ -91,7 +90,6 @@ export default function AssessmentForm({
 
   const handleSelectChange = useCallback((name: string) => (value: string) => {
     setNewAssessment((prev) => ({ ...prev, [name]: value }));
-
 
   }, [setNewAssessment, groups]);
 
@@ -196,7 +194,6 @@ export default function AssessmentForm({
                 </AnimatePresence>
               </SelectContent>
             </Select>
-
           </div>
 
           <div className="space-y-2">
