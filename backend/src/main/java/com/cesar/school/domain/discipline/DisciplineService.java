@@ -65,7 +65,7 @@ public class DisciplineService {
                 .orElseThrow(() -> new EntityNotFoundException("Disciplina não encontrada."));
 
         if (!discipline.getGroups().isEmpty()) {
-            throw new DisciplineWithGroupException("Não é possível deletar a disciplina. Existem " + discipline.getGroups() + " grupos associados a ela.");
+            throw new DisciplineWithGroupException("Não é possível deletar a disciplina. Existem " + (long) discipline.getGroups().size() + " grupos associados a ela.");
         }
 
         disciplineRepository.delete(discipline);

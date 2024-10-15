@@ -4,7 +4,7 @@ import Sidebar from "../Sidebar";
 import Breadcrumbs from "./Breadcrumbs";
 import GroupList from "./GroupList";
 import DisciplineList from "./DisciplineList";
-import { toast } from "react-toastify";
+import { useToast } from '../ui/use-toast';
 import http from "@/api";
 import { ToastAction } from "../ui/toast";
 
@@ -34,6 +34,7 @@ interface GroupWithStudentsDTO extends Group {
 }
 
 export default function DisciplineGroupManagement() {
+  const { toast } = useToast()
   const [disciplines, setDisciplines] = useState<Discipline[]>([]);
   const [newDiscipline, setNewDiscipline] = useState({
     name: "",
@@ -231,7 +232,10 @@ export default function DisciplineGroupManagement() {
       setFilteredGroups(
         filteredGroups.filter((group) => group.disciplineId !== id)
       );
-      toast.success("Disciplina excluída com sucesso.");
+      toast({
+        title: "Disciplina deletada com sucesso",
+        variant: "success"
+      });
     } catch (error: any) {
       const errorMessage = error?.response?.data?.message || "Erro desconhecido ao tentar deletar a disciplina.";
       

@@ -5,11 +5,26 @@ import Breadcrumbs from "../DisciplineGroupManagement/Breadcrumbs";
 import AssessmentForm from "./AssessmentForm";
 import AssessmentList from "./AssessmentList";
 import AssessmentSearch from "./AssessmentSearch";
-import mockApi from "../../utils/mockApi";
 import http from "@/api";
 import { useToast } from "@/components/ui/use-toast";
 import { Plus } from "lucide-react";
 import { formatISO } from "date-fns";
+
+interface Student {
+  name: string;
+  email: string;
+}
+
+interface Group {
+  id: number;
+  name: string;
+  students: Student[];
+}
+
+interface GroupWithStudentsDTO extends Group {
+  disciplineName: string;
+  disciplineId: number;
+}
 
 export default function AssessmentManagement() {
   const [assessments, setAssessments] = useState([]);
@@ -34,15 +49,18 @@ export default function AssessmentManagement() {
     try {
       const response = await http.get("/v1/disciplines");
       setDisciplines(response.data);
-      console.log(response.data)
+      setGroups(
+        response.data.flatMap((discipline) =>
+          discipline.groups.map((group) => ({
+            ...group,
+            disciplineName: discipline.name,
+          }))
+        )
+      );
     } catch (error) {
-      toast({
-        title: "Erro",
-        description: "Ocorreu um erro ao buscar as disciplinas.",
-        variant: "destructive",
-      });
+      toast.error("Ocorreu um erro ao buscar as disciplinas.");
     }
-  }, [toast]);
+  }, []);
 
   const fetchAssessments = useCallback(async () => {
     setIsLoading(true);

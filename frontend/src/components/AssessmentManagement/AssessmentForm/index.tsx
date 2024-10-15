@@ -25,21 +25,29 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
-
-interface Discipline {
-  id: string;
+export interface Discipline {
+  id: number;
   name: string;
+  course: string;
+  semester: string;
+  groups: any[];
 }
 
 interface Group {
-  id: string;
+  id: number;
   name: string;
+  students: Student[];
+}
+
+interface Student {
+  name: string;
+  email: string;
 }
 
 interface Assessment {
   name: string;
-  disciplineId: string;
-  groupId: string;
+  disciplineId: number;
+  groupId: number;
   deadline: Date | undefined;
 }
 
@@ -83,13 +91,6 @@ export default function AssessmentForm({
   const handleSelectChange = useCallback((name: string) => (value: string) => {
     setNewAssessment((prev) => ({ ...prev, [name]: value }));
 
-    // Se a disciplina for selecionada, filtrar os grupos
-    if (name === "disciplineId") {
-      const selectedDisciplineId = value;
-      const groupsForDiscipline = groups.filter(group => group.id === selectedDisciplineId);
-      setFilteredGroups(groupsForDiscipline); // Atualiza grupos filtrados
-      setNewAssessment((prev) => ({ ...prev, groupId: "" })); // Reseta o grupo selecionado
-    }
   }, [setNewAssessment, groups]);
 
   const handleDateSelect = useCallback((date: Date | undefined) => {
@@ -136,7 +137,11 @@ export default function AssessmentForm({
               value={newAssessment.disciplineId}
             >
               <SelectTrigger id="discipline" className="w-full">
-                <SelectValue placeholder="Selecione uma Disciplina" />
+                <SelectValue>
+                  {newAssessment.disciplineId
+                    ? disciplines.find((discipline) => discipline.id === newAssessment.disciplineId)?.name
+                    : "Selecione uma Disciplina"}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 <AnimatePresence>
@@ -148,7 +153,7 @@ export default function AssessmentForm({
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <SelectItem value={discipline.id}>
+                      <SelectItem value={String(discipline.id)}>
                         {discipline.name}
                       </SelectItem>
                     </motion.div>
@@ -165,7 +170,11 @@ export default function AssessmentForm({
               value={newAssessment.groupId}
             >
               <SelectTrigger id="group" className="w-full">
-                <SelectValue placeholder="Selecione um Grupo" />
+                <SelectValue>
+                  {newAssessment.groupId
+                    ? filteredGroups.find((group) => group.id === newAssessment.groupId)?.name
+                    : "Selecione um Grupo"}
+                </SelectValue>
               </SelectTrigger>
               <SelectContent>
                 <AnimatePresence>
@@ -177,7 +186,9 @@ export default function AssessmentForm({
                       exit={{ opacity: 0, y: 10 }}
                       transition={{ duration: 0.2 }}
                     >
-                      <SelectItem value={group.id}>{group.name}</SelectItem>
+                      <SelectItem value={String(group.id)}>
+                        {group.name}
+                      </SelectItem>
                     </motion.div>
                   ))}
                 </AnimatePresence>
